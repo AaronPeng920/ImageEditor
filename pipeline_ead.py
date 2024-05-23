@@ -48,6 +48,26 @@ def preprocess(image):
 
 
 def ddcm_sampler(scheduler, x_s, x_t, timestep, e_s, e_t, x_0, noise, eta, to_next=True):
+    """DDCM Sampler
+
+    Args:
+        scheduler (Any): scheduler
+        x_s (torch.Tensor): x_src
+        x_t (torch.Tensor): x_tgt
+        timestep (int): timestep
+        e_s (torch.Tensor): pred epsilon_src from x_s
+        e_t (torch.Tensor): pred epsilon_tgt from x_t
+        x_0 (torch.Tensor): x_0
+        noise (torch.Tensor): random noise sim N(0,I)
+        eta (_type_): _description_
+        to_next (bool, optional): _description_. Defaults to True.
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        _type_: _description_
+    """
     if scheduler.num_inference_steps is None:
         raise ValueError(
             "Number of inference steps is 'None', you need to run 'set_timesteps' after creating the scheduler"
